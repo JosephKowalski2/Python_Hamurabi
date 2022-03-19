@@ -1,5 +1,6 @@
 from math import floor
 
+
 def play_game():
     years = 1
     population = 100
@@ -26,6 +27,44 @@ def play_game():
         acre_bought = ask_how_many_acres_to_buy(price, bushels)
         acres += acre_bought
         bushels -= acre_bought * price
+        print(f'You have {acres} acres now. And {bushels} in storage')
+
+        if acre_bought == 0:
+            acres_sold = ask_how_many_acres_to_sell(acres)
+            acres -= acres_sold
+            bushels += acres_sold * price
+            print(f'You currently have {bushels} bushels and {acres} acres after you sold land')
+
+        print(f'It takes {floor(population * 20)} bushels and {acres} after you sold land.')
+        bushels_fed_to_people = how_much_grain_to_feed_people(bushels)
+        bushels -= bushels_fed_to_people
+        print(f'After you fed your people you have {bushels} bushels remaining.')
+
+        print(f'You need 2 bushels per acre, currently you have {bushels}'
+              f' and you need 1 person per 10 acres, current population is {population}')
+        acres_planted = ask_how_many_acres_to_plant(acres, population, bushels)
+        bushels -= acres_planted * 2
+
+        number_of_plague = plague_deaths(population)
+        population -= number_of_plague
+        if number_of_plague > 0:
+                print(f'*********************************************************************************'
+                      f'*********************************************************************************'
+                      f'***********COVID HAS SWEPT THROUGH THE KINGDOM! {number_of_plague} people have died...***********'
+                      f'*********************************************************************************'
+                      f'*********************************************************************************')
+
+        death = starvation_deaths(population, bushels_fed_to_people)
+        population -= deaths
+        total_deaths = deaths + number_of_plague
+
+        if uprising(population, deaths):
+                break
+
+        if deaths == 0:
+                immigrants = immigrants(population, acres, bushels)
+        population += immigrants
+
         years += 1
 
 
@@ -43,5 +82,6 @@ def summary(years, deaths, immigrants, population, harvest, grain_eaten, bushels
             """.format(years=years, deaths=deaths, immigrants=immigrants, population=population, harvest=harvest,
                        grain_eaten=grain_eaten, bushels=bushels, acres=acres, price=price)
     return print(print_summary)
+
 
 play_game()
