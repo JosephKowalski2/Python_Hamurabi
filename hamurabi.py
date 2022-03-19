@@ -65,6 +65,22 @@ def play_game():
                 immigrants = immigrants(population, acres, bushels)
         population += immigrants
 
+        bushels_used_as_seed = acres_planted * 2
+        harvest = harvest(acres_planted, bushels_used_as_seed)
+        bushels += harvest
+
+        grain_eaten = grain_eaten_by_rats(bushels)
+        if grain_eaten > 0:
+                print(f'*********************************************************************************'
+                      f'*********************************************************************************'
+                      f'*****A SWARM OF RELENTLESS RATS HAVE APPEARED! {grainEaten} bushels has been eaten...*****'
+                      f'*********************************************************************************'
+                      f'*********************************************************************************')
+        bushels -= grain_eaten
+
+        price = new_cost_of_land()
+        total_immigration += immigrants
+        total_grain_eaten_by_rats += grain_eaten
         years += 1
 
 
