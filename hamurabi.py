@@ -48,21 +48,17 @@ def play_game():
         number_of_plague = plague_deaths(population)
         population -= number_of_plague
         if number_of_plague > 0:
-                print(f'*********************************************************************************'
-                      f'*********************************************************************************'
-                      f'***********COVID HAS SWEPT THROUGH THE KINGDOM! {number_of_plague} people have died...***********'
-                      f'*********************************************************************************'
-                      f'*********************************************************************************')
+            plague(number_of_plague)
 
         death = starvation_deaths(population, bushels_fed_to_people)
         population -= deaths
         total_deaths = deaths + number_of_plague
 
         if uprising(population, deaths):
-                break
+            break
 
         if deaths == 0:
-                immigrants = immigrants(population, acres, bushels)
+            immigrants = immigrants(population, acres, bushels)
         population += immigrants
 
         bushels_used_as_seed = acres_planted * 2
@@ -71,11 +67,7 @@ def play_game():
 
         grain_eaten = grain_eaten_by_rats(bushels)
         if grain_eaten > 0:
-                print(f'*********************************************************************************'
-                      f'*********************************************************************************'
-                      f'*****A SWARM OF RELENTLESS RATS HAVE APPEARED! {grainEaten} bushels has been eaten...*****'
-                      f'*********************************************************************************'
-                      f'*********************************************************************************')
+            rat_plague(grain_eaten)
         bushels -= grain_eaten
 
         price = new_cost_of_land()
@@ -98,6 +90,20 @@ def summary(years, deaths, immigrants, population, harvest, grain_eaten, bushels
             """.format(years=years, deaths=deaths, immigrants=immigrants, population=population, harvest=harvest,
                        grain_eaten=grain_eaten, bushels=bushels, acres=acres, price=price)
     return print(print_summary)
+
+def plague(number_of_plague):
+    print(f'*********************************************************************************'
+          f'*********************************************************************************'
+          f'***********COVID HAS SWEPT THROUGH THE KINGDOM! {number_of_plague} people have died...***********'
+          f'*********************************************************************************'
+          f'*********************************************************************************')
+
+def rat_plague(grain_eaten):
+    print(f'*********************************************************************************'
+          f'*********************************************************************************'
+          f'*****A SWARM OF RELENTLESS RATS HAVE APPEARED! {grain_eaten} bushels has been eaten...*****'
+          f'*********************************************************************************'
+          f'*********************************************************************************')
 
 
 play_game()
