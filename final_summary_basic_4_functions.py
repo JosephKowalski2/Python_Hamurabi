@@ -1,44 +1,45 @@
 # print final summary
 import math
 from random import randrange
-population=0
-deaths=0
-years=0
-total_deaths=0
-total_immigration =0
-total_grain_eating_by_rats=0
-bushels=0
-acres=0
-if uprising(population, deaths):
-    print(f'The people threw you out because  {deaths} people died from starvation... ')
-    print(f"Maybe being king doesn't suite you... try Zip Code instead...You have lasted { years} year(s)! A total of {total_deaths}  people died.")
-    print(f"{total_immigration } people have chosen to come to your lousy kingdom and the final population was {population }.")
-    print(f"Somehow mutant rats ate a total of {total_grain_eating_by_rats} bushels... gross... Leaving  {bushels} in storage.")
-    print(f"Finally you monopolized {acres} acres of land")
-
-elif (deaths<10 and (acres/population) * 100 ) > 10 and years ==10 :
-    print(f"All has come to an end! KING OF THE NORTH!!! YOU WILL BE REMEMBERED!!! You have lasted {years} years(s)")
-    print(f"A total of  {total_deaths}  people died. { total_immigration} people have chosen to come to your amazing kingdom and the final population was {population}.")
-    print(f" Somehow mutant rats ate a total of {total_grain_eating_by_rats} bushels... gross...")
-    print(f"Leaving { bushels}  in storage. Finally you monopolized {acres }acres of land.")
-
-elif (deaths <15 and  (acres/population)* 100) >5 and years == 10 :
-    print(f"All has come to an end! You were an average king...You have lasted {years} year(s)! A total of {total_deaths} people died.")
-    print(f"{ total_immigration } people have chosen to come to your amazing kingdom and the final population was {population}.")
-    print(f"Somehow mutant rats ate a total of {total_grain_eating_by_rats} bushels... gross..Leaving {bushels} in storage.")
-    print(f"Finally you monopolized {acres } acres of land.")
-
-elif (deaths <20 and ((acres/population)*100)) >0 && years ==10 :
-    print(f"All has come to an end! Your people weren't happy but I guess you did it... king...You have lasted { years} year(s)!")
-    print(f"A total of {total_deaths} people died. {total_immigration} people have chosen to come to your amazing kingdom and the final population was {population}.")
-    print(f"Somehow mutant rats ate a total of {total_grain_eating_by_rats} bushels... gross...")
-    print(f"Leaving  {bushels}in storage. Finally you monopolized {acres }acres of land.")
-
-else:
-    print(f"All has come to an end! You call yourself a king? Psh... You have lasted {years} years(s)!")
-    print(f" A total of  {total_deaths }people died.{total_immigration} people have chosen to come to your amazing kingdom and the final population was {population }.")
-    print(f"Somehow mutant rats ate a total of {total_grain_eating_by_rats} bushels... gross...")
-    print(f"Leaving {bushels}in storage.Finally you monopolized { acres} acres of land.")
+# population=0
+# deaths=0
+# years=0
+# total_deaths=0
+# total_immigration =0
+# total_grain_eating_by_rats=0
+# bushels=0
+# acres=0
+# def final_summary():
+#     if uprising(population, deaths):
+#         print(f'The people threw you out because  {deaths} people died from starvation... ')
+#         print(f"Maybe being king doesn't suite you... try Zip Code instead...You have lasted { years} year(s)! A total of {total_deaths}  people died.")
+#         print(f"{total_immigration } people have chosen to come to your lousy kingdom and the final population was {population }.")
+#         print(f"Somehow mutant rats ate a total of {total_grain_eating_by_rats} bushels... gross... Leaving  {bushels} in storage.")
+#         print(f"Finally you monopolized {acres} acres of land")
+#
+#     elif (deaths<10 and (acres/population) * 100 ) > 10 and years ==10 :
+#         print(f"All has come to an end! KING OF THE NORTH!!! YOU WILL BE REMEMBERED!!! You have lasted {years} years(s)")
+#         print(f"A total of  {total_deaths}  people died. { total_immigration} people have chosen to come to your amazing kingdom and the final population was {population}.")
+#         print(f" Somehow mutant rats ate a total of {total_grain_eating_by_rats} bushels... gross...")
+#         print(f"Leaving { bushels}  in storage. Finally you monopolized {acres }acres of land.")
+#
+#     elif (deaths <15 and  (acres/population)* 100) >5 and years == 10 :
+#         print(f"All has come to an end! You were an average king...You have lasted {years} year(s)! A total of {total_deaths} people died.")
+#         print(f"{ total_immigration } people have chosen to come to your amazing kingdom and the final population was {population}.")
+#         print(f"Somehow mutant rats ate a total of {total_grain_eating_by_rats} bushels... gross..Leaving {bushels} in storage.")
+#         print(f"Finally you monopolized {acres } acres of land.")
+#
+#     elif (deaths <20 and ((acres/population)*100)) >0 && years ==10 :
+#         print(f"All has come to an end! Your people weren't happy but I guess you did it... king...You have lasted { years} year(s)!")
+#         print(f"A total of {total_deaths} people died. {total_immigration} people have chosen to come to your amazing kingdom and the final population was {population}.")
+#         print(f"Somehow mutant rats ate a total of {total_grain_eating_by_rats} bushels... gross...")
+#         print(f"Leaving  {bushels}in storage. Finally you monopolized {acres }acres of land.")
+#
+#     else:
+#         print(f"All has come to an end! You call yourself a king? Psh... You have lasted {years} years(s)!")
+#         print(f" A total of  {total_deaths }people died.{total_immigration} people have chosen to come to your amazing kingdom and the final population was {population }.")
+#         print(f"Somehow mutant rats ate a total of {total_grain_eating_by_rats} bushels... gross...")
+#         print(f"Leaving {bushels}in storage.Finally you monopolized { acres} acres of land.")
 
 #input prompt
 def get_number(message):

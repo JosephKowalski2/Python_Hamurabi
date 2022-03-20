@@ -1,4 +1,5 @@
 from math import floor
+from final_summary_basic_4_functions import *
 
 
 def play_game():
@@ -36,7 +37,7 @@ def play_game():
             print(f'You currently have {bushels} bushels and {acres} acres after you sold land')
 
         print(f'It takes {floor(population * 20)} bushels and {acres} after you sold land.')
-        bushels_fed_to_people = how_much_grain_to_feed_people(bushels)
+        bushels_fed_to_people = how_many_grains_to_feed_people(bushels)
         bushels -= bushels_fed_to_people
         print(f'After you fed your people you have {bushels} bushels remaining.')
 
@@ -75,6 +76,7 @@ def play_game():
         total_grain_eaten_by_rats += grain_eaten
         years += 1
 
+    final_summary(population, deaths, total_immigration, total_grain_eaten_by_rats, bushels, years, acres, total_deaths)
 
 def summary(years, deaths, immigrants, population, harvest, grain_eaten, bushels, acres, price):
     print_summary = """
@@ -105,5 +107,36 @@ def rat_plague(grain_eaten):
           f'*********************************************************************************'
           f'*********************************************************************************')
 
+def final_summary(population, deaths, total_immigration, total_grain_eaten_by_rats, bushels, years, acres, total_deaths):
+    if uprising(population, deaths):
+        print(f'The people threw you out because  {deaths} people died from starvation... ')
+        print(f"Maybe being king doesn't suite you... try Zip Code instead...You have lasted { years} year(s)! A total of {total_deaths}  people died.")
+        print(f"{total_immigration } people have chosen to come to your lousy kingdom and the final population was {population }.")
+        print(f"Somehow mutant rats ate a total of {total_grain_eaten_by_rats} bushels... gross... Leaving  {bushels} in storage.")
+        print(f"Finally you monopolized {acres} acres of land")
+
+    elif (deaths<10 and (acres/population) * 100 ) > 10 and years ==10 :
+        print(f"All has come to an end! KING OF THE NORTH!!! YOU WILL BE REMEMBERED!!! You have lasted {years} years(s)")
+        print(f"A total of  {total_deaths}  people died. { total_immigration} people have chosen to come to your amazing kingdom and the final population was {population}.")
+        print(f" Somehow mutant rats ate a total of {total_grain_eaten_by_rats} bushels... gross...")
+        print(f"Leaving { bushels}  in storage. Finally you monopolized {acres }acres of land.")
+
+    elif (deaths <15 and  (acres/population)* 100) >5 and years == 10 :
+        print(f"All has come to an end! You were an average king...You have lasted {years} year(s)! A total of {total_deaths} people died.")
+        print(f"{ total_immigration } people have chosen to come to your amazing kingdom and the final population was {population}.")
+        print(f"Somehow mutant rats ate a total of {total_grain_eaten_by_rats} bushels... gross..Leaving {bushels} in storage.")
+        print(f"Finally you monopolized {acres } acres of land.")
+
+    elif (deaths <20 and ((acres/population)*100)) >0 && years ==10 :
+        print(f"All has come to an end! Your people weren't happy but I guess you did it... king...You have lasted { years} year(s)!")
+        print(f"A total of {total_deaths} people died. {total_immigration} people have chosen to come to your amazing kingdom and the final population was {population}.")
+        print(f"Somehow mutant rats ate a total of {total_grain_eaten_by_rats} bushels... gross...")
+        print(f"Leaving  {bushels}in storage. Finally you monopolized {acres }acres of land.")
+
+    else:
+        print(f"All has come to an end! You call yourself a king? Psh... You have lasted {years} years(s)!")
+        print(f" A total of  {total_deaths }people died.{total_immigration} people have chosen to come to your amazing kingdom and the final population was {population }.")
+        print(f"Somehow mutant rats ate a total of {total_grain_eaten_by_rats} bushels... gross...")
+        print(f"Leaving {bushels}in storage.Finally you monopolized { acres} acres of land.")
 
 play_game()
