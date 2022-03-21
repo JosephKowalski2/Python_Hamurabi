@@ -1,5 +1,6 @@
 from math import floor
 from final_summary_basic_4_functions import *
+from alissa_function import *
 
 
 def play_game():
@@ -28,7 +29,7 @@ def play_game():
         acre_bought = ask_how_many_acres_to_buy(price, bushels)
         acres += acre_bought
         bushels -= acre_bought * price
-        print(f'You have {acres} acres now. And {bushels} in storage')
+        print(f'You have {acres} acres now. And {bushels} bushels in storage')
 
         if acre_bought == 0:
             acres_sold = ask_how_many_acres_to_sell(acres)
@@ -36,7 +37,7 @@ def play_game():
             bushels += acres_sold * price
             print(f'You currently have {bushels} bushels and {acres} acres after you sold land')
 
-        print(f'It takes {floor(population * 20)} bushels and {acres} after you sold land.')
+        print(f'It takes {floor(population * 20)} bushels to feed everyone.')
         bushels_fed_to_people = how_many_grains_to_feed_people(bushels)
         bushels -= bushels_fed_to_people
         print(f'After you fed your people you have {bushels} bushels remaining.')
@@ -51,22 +52,23 @@ def play_game():
         if number_of_plague > 0:
             plague(number_of_plague)
 
-        death = starvation_deaths(population, bushels_fed_to_people)
+        deaths = get_starvation_deaths(population, bushels_fed_to_people)
         population -= deaths
         total_deaths = deaths + number_of_plague
 
-        if uprising(population, deaths):
+        if uprising_bool(population, deaths):
             break
 
         if deaths == 0:
-            immigrants = immigrants(population, acres, bushels)
+            immigrants = get_immigrants(population, acres, bushels, deaths)
         population += immigrants
 
         bushels_used_as_seed = acres_planted * 2
-        harvest = harvest(acres_planted, bushels_used_as_seed)
+        harvest_unit = get_unit_havst()
+        harvest = get_havst_bushels(acres_planted, harvest_unit, bushels_used_as_seed)
         bushels += harvest
 
-        grain_eaten = grain_eaten_by_rats(bushels)
+        grain_eaten = do_rat_infestation(bushels)
         if grain_eaten > 0:
             rat_plague(grain_eaten)
         bushels -= grain_eaten
@@ -108,7 +110,7 @@ def rat_plague(grain_eaten):
           f'*********************************************************************************')
 
 def final_summary(population, deaths, total_immigration, total_grain_eaten_by_rats, bushels, years, acres, total_deaths):
-    if uprising(population, deaths):
+    if uprising_bool(population, deaths):
         print(f'The people threw you out because  {deaths} people died from starvation... ')
         print(f"Maybe being king doesn't suite you... try Zip Code instead...You have lasted { years} year(s)! A total of {total_deaths}  people died.")
         print(f"{total_immigration } people have chosen to come to your lousy kingdom and the final population was {population }.")
@@ -127,7 +129,7 @@ def final_summary(population, deaths, total_immigration, total_grain_eaten_by_ra
         print(f"Somehow mutant rats ate a total of {total_grain_eaten_by_rats} bushels... gross..Leaving {bushels} in storage.")
         print(f"Finally you monopolized {acres } acres of land.")
 
-    elif (deaths <20 and ((acres/population)*100)) >0 && years ==10 :
+    elif (deaths <20 and ((acres/population)*100)) >0 and years ==10 :
         print(f"All has come to an end! Your people weren't happy but I guess you did it... king...You have lasted { years} year(s)!")
         print(f"A total of {total_deaths} people died. {total_immigration} people have chosen to come to your amazing kingdom and the final population was {population}.")
         print(f"Somehow mutant rats ate a total of {total_grain_eaten_by_rats} bushels... gross...")
