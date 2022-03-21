@@ -54,27 +54,27 @@ def get_number(message):
 def ask_how_many_acres_to_buy( price:int, bushels:int ) ->int:
     acres_bought = int(get_number("How many acres do you want to buy?\n"))
     while ((price *acres_bought) >bushels or (acres_bought <0)) :
-        acres_bought =get_number("You can't do that, how many acres CAN you buy???\n")
+        acres_bought =int(get_number("You can't do that, how many acres CAN you buy???\n"))
     return acres_bought
 #acres to sell
 def ask_how_many_acres_to_sell(acres_owned:int) -> int :
     acres_sold=int(get_number("How many acres do you want to sell?\n"))
     while ((acres_sold >acres_owned) or (acres_sold <0 )) :
-        acres_sold =get_number("That makes no sense...try again...\n")
+        acres_sold =int(get_number("That makes no sense...try again...\n"))
     return acres_sold
 
 #grains to feed
 def how_many_grains_to_feed_people(bushes:int)->int:
     bushels_fed_to_people = int(get_number("How much grain do you want to feed your people?\n"))
     while((bushels_fed_to_people >bushes) or bushels_fed_to_people <0) :
-        bushels_fed_to_people=get_number("Are you serious?, how much are you actually going to feed them?\n")
+        bushels_fed_to_people=int(get_number("Are you serious?, how much are you actually going to feed them?\n"))
     return bushels_fed_to_people
 
 #acres to plant
 def ask_how_many_acres_to_plant(acres_owned:int,population:int,bushles:int)->int:
     acres_to_plant=int(get_number("How many acres do you want to plant?\n"))
     while (acres_to_plant >acres_owned or acres_to_plant > (bushles /2) or (population *10) <acres_to_plant or (acres_to_plant <0)) :
-        acres_to_plant=get_number("Nope, try again....\n")
+        acres_to_plant=int(get_number("Nope, try again....\n"))
     return acres_to_plant
 
 
